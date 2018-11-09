@@ -27,6 +27,11 @@ public class Delegado3 extends Thread {
 	public static final String INICIO = "INICIO";
 	public static final String ERROR = "ERROR";
 	public static final String REC = "recibio-";
+	
+	
+	public static int numeroCarga; 
+	
+	
 	// Atributos
 	private Socket sc = null;
 	private String dlg;
@@ -37,7 +42,8 @@ public class Delegado3 extends Thread {
 	Delegado3 (Socket csP, int idP) {
 		sc = csP;
 		dlg = new String("delegado " + idP + ": ");
-		monitor = new MonitorCPU(); 
+		monitor = new MonitorCPU(idP); 
+
 		try {
 		    mybyte = new byte[520]; 
 		    mybyte = Coordinador.certSer.getEncoded( );
@@ -55,6 +61,10 @@ public class Delegado3 extends Thread {
 				BufferedReader dc = new BufferedReader(new InputStreamReader(sc.getInputStream()));
 
 				/***** Fase 1: Inicio *****/
+				linea = dc.readLine(); 
+				System.out.println("carga =  " +  linea );
+				numeroCarga = Integer.parseInt(linea); 
+				
 				linea = dc.readLine();
 				if (!linea.equals(HOLA)) {
 					ac.println(ERROR);

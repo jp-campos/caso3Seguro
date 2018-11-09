@@ -17,6 +17,14 @@ public class Coordinador {
 	static java.security.cert.X509Certificate certSer; /* acceso default */
 	static KeyPair keyPairServidor; /* acceso default */
 	
+	
+	/*
+	 * Modificar el número de threads
+	 * 1, 2 y 8
+	 */
+	public static final int NUMERO_THREADS = 2; 
+	
+	
 	/**
 	 * @param args	
 	 */
@@ -34,7 +42,7 @@ public class Coordinador {
 		keyPairServidor = Seg.grsa();
 		certSer = Seg.gc(keyPairServidor);	
 		
-		ExecutorService service = Executors.newFixedThreadPool(1);
+		ExecutorService service = Executors.newFixedThreadPool(NUMERO_THREADS);
 		
 		
 		int idThread = 0;
