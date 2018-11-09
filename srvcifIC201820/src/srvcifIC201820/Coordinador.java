@@ -22,7 +22,7 @@ public class Coordinador {
 	 * Modificar el número de threads
 	 * 1, 2 y 8
 	 */
-	public static final int NUMERO_THREADS = 2; 
+	public static final int NUMERO_THREADS = 1; 
 	
 	
 	/**
