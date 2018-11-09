@@ -32,9 +32,12 @@ public class Delegado3 extends Thread {
 	private String dlg;
 	private byte[] mybyte;
 	
+	private MonitorCPU monitor; 
+	
 	Delegado3 (Socket csP, int idP) {
 		sc = csP;
 		dlg = new String("delegado " + idP + ": ");
+		monitor = new MonitorCPU(); 
 		try {
 		    mybyte = new byte[520]; 
 		    mybyte = Coordinador.certSer.getEncoded( );
@@ -120,6 +123,7 @@ public class Delegado3 extends Thread {
 				
 				/***** Fase 6: Confirma llave simetrica *****/
 				linea = dc.readLine();
+				monitor.start();
 				byte[] llaveS = Seg.ad(
 						toByteArray(linea), Coordinador.keyPairServidor.getPrivate(), algoritmos[2]);
 				if (!toHexString(llaveS).equals(toHexString(simetrica.getEncoded()))) {

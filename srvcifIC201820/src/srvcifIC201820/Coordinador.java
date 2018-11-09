@@ -48,6 +48,8 @@ public class Coordinador {
 				Delegado3 d3 = new Delegado3(sc,idThread);
 				idThread++;
 				
+				
+				
 				service.execute(d3);
 			} catch (IOException e) {
 				System.out.println(MAESTRO + "Error creando el socket cliente.");
